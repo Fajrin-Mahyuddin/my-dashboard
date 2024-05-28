@@ -10,8 +10,8 @@ export default async function Page({
   console.log(params, searchParams);
   return (
     <BaseLayout>
-      <div className="flex flex-col items-center justify-between bg-[#eaeaea] h-full p-4 rounded-[20px]">
-        <table className="table-fixed">
+      <div className="flex flex-col items-center justify-between bg-[#fff] h-full p-4 rounded-[10px]">
+        <table className="table-fixed w-full">
           <thead>
             <tr>
               <th>Song</th>

@@ -8,16 +8,23 @@ const config: Config = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    fontFamily: {
-      sans: ['"Caros Soft Regular"', ...defaultTheme.fontFamily.sans],
-    },
-    // extend: {
-    //   backgroundImage: {
-    //     "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-    //     "gradient-conic":
-    //       "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-    //   },
+    // fontFamily: {
+    //   sans: ['"Caros Soft Regular"', ...defaultTheme.fontFamily.sans],
     // },
+    extend: {
+      colors: {
+        second: "#E6AB35",
+      },
+      textColor: {
+        hover: "#E6AB35",
+      },
+      backgroundImage: {
+        // "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        // "gradient-conic":
+        //   "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "main-bg": "url('/assets/images/bg2.jpg')",
+      },
+    },
   },
   plugins: [],
 };
