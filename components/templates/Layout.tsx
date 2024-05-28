@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 
@@ -12,18 +13,17 @@ interface IBaseLayout {
 
 const BaseLayout = ({ children }: IBaseLayout) => {
   return (
-    <main className="flex flex-col h-screen bg-slate-400">
-      <MainHeader />
-      {/* sidebar and content */}
-      <div className="flex flex-row h-screen w-full bg-red-300">
-        <div className="w-[80rem] max-w-[300px] mt-4">
-          <Sidebar />
-        </div>
-        <div className="flex flex-col gap-4 bg-fuchsia-300 p-4">
+    <main className="flex flex-row h-screen bg-[#fff]">
+      <div className="w-[80rem] max-w-[300px] bg-white shadow-[rgba(0,0,0,0.16)_0px_1px_4px]">
+        <Sidebar />
+      </div>
+      <div className="flex flex-col gap-4 w-full">
+        <MainHeader />
+        <div className="flex flex-col h-full w-full gap-4 px-6">
           <Breadcrumb />
           {children}
-          <Footers />
         </div>
+        <Footers />
       </div>
     </main>
   );

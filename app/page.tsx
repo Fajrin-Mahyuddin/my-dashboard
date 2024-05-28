@@ -11,20 +11,32 @@ export default async function Page({
   return (
     <BaseLayout>
       <div className="flex flex-col items-center justify-between bg-[#eaeaea] h-full p-4 rounded-[20px]">
-        <p>
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam
-          ratione suscipit nisi non dicta odio temporibus nostrum similique,
-          aliquam cum quod quibusdam explicabo ad, consectetur officia aperiam
-          eum eos assumenda quae odit quas dolorum doloribus. Quibusdam eligendi
-          recusandae, perspiciatis doloremque perferendis fuga dolor! Inventore
-          perferendis accusantium ipsam. Consequuntur amet itaque laudantium.
-          Nostrum aut necessitatibus, suscipit nisi odit tenetur corporis ipsam
-          aliquid omnis, fuga nihil ut quia ea veritatis nam asperiores. Quo
-          beatae quia optio sint delectus dolores atque, pariatur tenetur,
-          quibusdam repudiandae dignissimos deserunt corrupti eaque? Repellendus
-          facere temporibus exercitationem officiis culpa. Ut sunt sit corporis
-          qui et maxime exercitationem?
-        </p>
+        <table className="table-fixed">
+          <thead>
+            <tr>
+              <th>Song</th>
+              <th>Artist</th>
+              <th>Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
+              <td>Malcolm Lockyer</td>
+              <td>1961</td>
+            </tr>
+            <tr>
+              <td>Witchy Woman</td>
+              <td>The Eagles</td>
+              <td>1972</td>
+            </tr>
+            <tr>
+              <td>Shining Star</td>
+              <td>Earth, Wind, and Fire</td>
+              <td>1975</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </BaseLayout>
   );
