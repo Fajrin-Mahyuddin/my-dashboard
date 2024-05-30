@@ -29,18 +29,18 @@ const Sidebar = () => {
         <SidebarMenu url="/forms" icon={CreditCardIcon}>
           Payment Gateway
         </SidebarMenu>
-        <SidebarMenu url="# " icon={Square3Stack3DIcon}>
-          Components
+        <SidebarMenu url="/ui-components" icon={Square3Stack3DIcon}>
+          UI Components
         </SidebarMenu>
-        <SidebarMenu url="# " icon={PuzzlePieceIcon}>
-          State Managements
+        <SidebarMenu url="/state-management" icon={PuzzlePieceIcon}>
+          State Management
         </SidebarMenu>
         <SidebarMenuWithSub
           icon={CircleStackIcon}
           label="Server-Less"
           subs={[
-            { url: "server-less/firebase", label: "Firebase" },
-            { url: "server-less/supabase", label: "Supabase" },
+            { url: "server-less/firebase-page", label: "Firebase" },
+            { url: "server-less/supabase-page", label: "Supabase" },
           ]}
         />
       </ul>

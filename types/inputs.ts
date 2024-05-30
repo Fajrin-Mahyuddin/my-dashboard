@@ -17,6 +17,10 @@ export type TTextareaWithLabel = {
   children: string;
 } & TForm;
 
+export type TTextEditor = {
+  placeholder: string;
+} & TForm;
+
 export interface ISelectWithLabel extends TForm {
   children: string;
   placeholder: string;
