@@ -2,36 +2,49 @@ import TablesList from "components/organisms/tables/Tables";
 import TextInputWithLabel from "components/molecules/inputs/TextInputWithLabel";
 import BaseLayout from "components/templates/Layout";
 import React from "react";
+import TextareaWithLabel from "components/molecules/inputs/TextareaWithLabel";
+import SelectWithLabel from "components/molecules/selects/SelectWithLabel";
+import TextEditor from "components/molecules/inputs/TextEditor";
 
 const FormPage = () => {
   return (
     <BaseLayout>
-      <div className="bg-[white] h-full">
-        <div className="grid gap-4 grid-cols-3">
-          <TextInputWithLabel name="name" id="name" orient="col">
-            Input name
-          </TextInputWithLabel>
-          <TextInputWithLabel type="email" name="email" id="email" orient="col">
-            Email
-          </TextInputWithLabel>
-          <TextInputWithLabel name="occupation" id="occupation" orient="col">
-            Occupation
+      <div className="h-full">
+        <div className="grid gap-4 grid-cols-3 mb-4">
+          <TextInputWithLabel placeholder="" name="name" id="name" orient="col">
+            Name
           </TextInputWithLabel>
           <TextInputWithLabel
-            type="number"
-            name="phone"
             id="phone"
             orient="col"
+            name="phone"
+            type="number"
+            placeholder=""
           >
             Phone Number
           </TextInputWithLabel>
-          <TextInputWithLabel name="occupation" id="occupation" orient="col">
-            Address
-          </TextInputWithLabel>
-          <TextInputWithLabel name="occupation" id="occupation" orient="col">
-            Address
-          </TextInputWithLabel>
+          <SelectWithLabel
+            name="gender"
+            id="gender"
+            placeholder="Choose"
+            options={[
+              { value: "male", label: "Male" },
+              { value: "male", label: "Female" },
+            ]}
+          >
+            Gender
+          </SelectWithLabel>
         </div>
+        <TextareaWithLabel
+          placeholder="Address goes here"
+          name="address"
+          id="address"
+          orient="col"
+        >
+          Address
+        </TextareaWithLabel>
+        <br />
+        <TextEditor />
         <div className="mt-8 space-x-4">
           <button className="border p-2 w-[200px] rounded-md bg-[#E6AB35] text-[white] transition-all">
             Submit

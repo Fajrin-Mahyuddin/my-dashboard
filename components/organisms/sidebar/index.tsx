@@ -32,14 +32,9 @@ const Sidebar = () => {
         <SidebarMenu url="# " icon={Square3Stack3DIcon}>
           Components
         </SidebarMenu>
-        <SidebarMenuWithSub
-          icon={PuzzlePieceIcon}
-          label="State Managements"
-          subs={[
-            { url: "state-management/redux", label: "Redux" },
-            { url: "state-management/Zod", label: "Zod" },
-          ]}
-        />
+        <SidebarMenu url="# " icon={PuzzlePieceIcon}>
+          State Managements
+        </SidebarMenu>
         <SidebarMenuWithSub
           icon={CircleStackIcon}
           label="Server-Less"
