@@ -18,6 +18,7 @@ const TextInputWithLabel = ({
         {children}
       </label>
       <Input
+        required
         id={id}
         name={name}
         type={type}
