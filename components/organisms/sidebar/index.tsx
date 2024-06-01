@@ -39,8 +39,8 @@ const Sidebar = () => {
           icon={CircleStackIcon}
           label="Server-Less"
           subs={[
-            { url: "server-less/firebase-page", label: "Firebase" },
-            { url: "server-less/supabase-page", label: "Supabase" },
+            { url: "/server-less/firebase-page", label: "Firebase" },
+            { url: "/server-less/supabase-page", label: "Supabase" },
           ]}
         />
       </ul>
