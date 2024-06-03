@@ -1,6 +1,7 @@
 import React from "react";
 import { Select } from "@headlessui/react";
 import { ISelectWithLabel } from "types/inputs";
+import { Field, FieldProps, useField } from "formik";
 
 const SelectWithLabel = ({
   id,
@@ -9,16 +10,16 @@ const SelectWithLabel = ({
   orient = "col",
   options,
   placeholder,
-  onUpdate,
+  // onUpdate,
 }: ISelectWithLabel) => {
+  const [field, meta, helper] = useField(name);
   return (
     <div className={`flex flex-${orient} gap-2`}>
       <label htmlFor={id}>{children}</label>
       <Select
+        {...field}
         required
-        name={name}
         id={id}
-        onChange={(e) => onUpdate && onUpdate(e.target.value)}
         className="p-2 rounded-md outline-none border-[2px] focus:border-[2px] border-box focus:border-[#E6AB35]"
       >
         <option value="">{placeholder}</option>
