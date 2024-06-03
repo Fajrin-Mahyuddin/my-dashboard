@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
 import BaseLayout from "components/templates/Layout";
-import TablesList from "components/organisms/tables/Tables";
 import FormExample from "components/organisms/forms/FormExample";
+import TableFirebase from "components/organisms/tables/TableFirebase";
 
 const FormPage = () => {
   return (
     <BaseLayout>
       <div className="h-full">
         <FormExample />
-        <TablesList isLoading={false} />
+        <TableFirebase />
       </div>
     </BaseLayout>
   );
