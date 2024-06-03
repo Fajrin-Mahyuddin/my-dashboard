@@ -58,7 +58,7 @@ export default function Page({
             />
           </div>
         )}
-        <TablesList />
+        <TablesList cols={2} rows={2} />
       </div>
     </BaseLayout>
   );
