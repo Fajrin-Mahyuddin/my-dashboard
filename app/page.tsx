@@ -58,8 +58,7 @@ export default function Page({
             />
           </div>
         )}
-
-        <TablesList isLoading={isLoading} />
+        <TablesList />
       </div>
     </BaseLayout>
   );

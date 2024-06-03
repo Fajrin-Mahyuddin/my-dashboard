@@ -1,6 +1,7 @@
 import React from "react";
 import { Input } from "@headlessui/react";
 import { TInputWithLabel } from "types/inputs";
+import { Field } from "formik";
 
 const TextInputWithLabel = ({
   id,
@@ -9,7 +10,7 @@ const TextInputWithLabel = ({
   placeholder,
   orient = "col",
   type = "text",
-  onUpdate,
+  // onUpdate,
   value,
 }: TInputWithLabel<string>) => {
   return (
@@ -18,12 +19,13 @@ const TextInputWithLabel = ({
         {children}
       </label>
       <Input
+        as={Field}
         required
         id={id}
         name={name}
         type={type}
-        value={value}
-        onChange={(e) => onUpdate && onUpdate(e.target.value)}
+        // value={value}
+        // onChange={(e) => onUpdate && onUpdate(e.target.value)}
         autoComplete="off"
         autoCorrect="disable"
         placeholder={placeholder}
