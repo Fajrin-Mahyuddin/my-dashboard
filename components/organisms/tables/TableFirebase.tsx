@@ -53,8 +53,8 @@ const ListItem = ({
   setUser,
 }: TUsers & { setUser: (e: TUsers | null) => void }) => {
   return (
-    <tr className="border-b-[1px] border-b-[#dfdfdf]">
-      <td className="py-4 pl-2">{name}</td>
+    <tr className="border-b-[1px] border-b-[#dfdfdf] [&>td]:py-3 ">
+      <td className="pl-2">{name}</td>
       <td>{gender}</td>
       <td>{phone}</td>
       <td>{address}</td>

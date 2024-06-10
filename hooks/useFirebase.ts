@@ -6,6 +6,7 @@ import {
   setDoc,
   getDocs,
   deleteDoc,
+  onSnapshot,
 } from "firebase/firestore";
 import { db } from "connections/firebase";
 import { TUsers } from "types/users";
@@ -25,7 +26,6 @@ export const useFirebase = () => {
         show: true,
         status: "success",
       });
-      get();
     } catch (error) {
       console.log("something wrong!", error);
       setShow({
@@ -40,17 +40,26 @@ export const useFirebase = () => {
 
   const get = useCallback(async () => {
     setLoading(true);
-    try {
-      const query = await getDocs(collection(db, "users"));
-      const que = query.docs.map((item) => ({ id: item.id, ...item.data() }));
-      console.log(que);
-      setLists(que as TUsers[]);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    onSnapshot(
+      collection(db, "users"),
+      (snapshot) => {
+        const result = snapshot.docs.map((item) => ({
+          id: item.id,
+          ...item.data(),
+        }));
+        setLists(result as TUsers[]);
+      },
+      (error) => {
+        console.log("error", error);
+        setShow({
+          msg: "Fetch error!",
+          show: true,
+          status: "error",
+        });
+      },
+    );
+    setLoading(false);
+  }, [setShow]);
 
   const delItem = async (id: string, cb?: () => void) => {
     setLoading(true);
@@ -61,8 +70,6 @@ export const useFirebase = () => {
         show: true,
         status: "success",
       });
-      get();
-      cb && cb();
     } catch (error) {
       console.log("deleting failed", error);
       setShow({
