@@ -2,11 +2,11 @@ import React from "react";
 import { useToast } from "states/zustand/useToast";
 
 const StatusAlert = () => {
-  const { msg, show } = useToast();
+  const { msg, show, status } = useToast();
   return (
     <div
       id="dismiss-alert"
-      className={`${show ? "" : "hidden"} w-auto hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 bg-teal-50 border border-teal-200 text-sm text-teal-800 rounded-lg p-4`}
+      className={`${show ? "" : "hidden"} w-auto hs-removing:translate-x-5 hs-removing:opacity-0 transition duration-300 ${status === "error" ? "bg-red-100" : "bg-teal-50"} border  ${status === "error" ? "bg-red-200" : "border-teal-200"}  text-sm  ${status === "error" ? "text-red-800" : "text-teal-800"} rounded-lg p-4`}
       role="alert"
     >
       <div className="flex">
@@ -28,7 +28,7 @@ const StatusAlert = () => {
           </svg>
         </div>
         <div className="ms-2">
-          <div className="text-sm font-medium">{msg}</div>
+          <div className="text-sm font-medium tracking-[1px]">{msg}</div>
         </div>
         {/* <div className="ps-3 ms-auto">
 					<div className="-mx-1.5 -my-1.5">

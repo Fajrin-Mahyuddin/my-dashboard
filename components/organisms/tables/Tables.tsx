@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import SkeletonTable from "components/organisms/skeleton/Tabel";
 import { useApiFetch } from "hooks/useApiFetch";
 
-const TablesList = () => {
+const TablesList = ({ rows, cols }: { rows: number; cols: number }) => {
   const { data, isLoading: isGetDataLoading } = useApiFetch();
   return (
     <table className="border-collapse border-spacing-6 mt-10 table-auto w-full">
@@ -14,7 +14,7 @@ const TablesList = () => {
       </thead>
       <tbody>
         {isGetDataLoading ? (
-          <SkeletonTable isLoading={isGetDataLoading} rows={3} cols={2} />
+          <SkeletonTable isLoading={isGetDataLoading} rows={rows} cols={cols} />
         ) : (
           <Fragment>
             {data &&

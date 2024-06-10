@@ -18,7 +18,7 @@ export default function Page({
   params: { slug: string };
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
-  console.log(params, searchParams);
+  // console.log(params, searchParams);
   // export default function Page() {
   const [isLoading, setLoading] = useState(true);
 
@@ -58,7 +58,7 @@ export default function Page({
             />
           </div>
         )}
-        <TablesList />
+        <TablesList cols={2} rows={2} />
       </div>
     </BaseLayout>
   );

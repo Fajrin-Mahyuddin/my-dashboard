@@ -5,13 +5,14 @@ import SelectWithLabel from "components/molecules/selects/SelectWithLabel";
 import TextInputWithLabel from "components/molecules/inputs/TextInputWithLabel";
 import { useFirebase } from "hooks/useFirebase";
 import { Form, Formik } from "formik";
-import { useToast } from "states/zustand/useToast";
 import StatusAlert from "components/molecules/alert/Status";
+import { TUsers } from "types/users";
+import { User } from "constants/user";
+import { validationForm } from "utils";
 
 const FormExample = () => {
   const { add, isLoading } = useFirebase();
-  const { setShow } = useToast();
-  const user = {
+  const user: TUsers = {
     name: "",
     phone: "",
     gender: "",
@@ -23,25 +24,14 @@ const FormExample = () => {
     <div>
       <StatusAlert />
       <br />
-      <Formik
+      <Formik<TUsers>
         enableReinitialize
+        validate={(value) => validationForm<TUsers>(value, User)}
         initialValues={user}
-        onSubmit={async (val, { setSubmitting }) => {
+        onSubmit={async (val, { setSubmitting, resetForm }) => {
           setSubmitting(true);
-          try {
-            await add(val);
-            setShow({
-              msg: "Success!",
-              show: true,
-              status: "success",
-            });
-          } catch (error) {
-            setShow({
-              msg: `Something wrong! ${error}`,
-              show: true,
-              status: "error",
-            });
-          }
+          await add(val);
+          resetForm();
         }}
       >
         <Form>
@@ -109,7 +99,10 @@ const FormExample = () => {
               ) : null}
               Submit
             </button>
-            <button className="border p-2 w-[200px] rounded-md bg-[#F26440] text-[white] transition-all">
+            <button
+              type="reset"
+              className="border p-2 w-[200px] rounded-md bg-[#F26440] text-[white] transition-all"
+            >
               Reset
             </button>
           </div>

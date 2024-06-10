@@ -1,7 +1,4 @@
-export type TUsers = {
-  name: string;
-  phone: string;
-  gender: string;
-  address: string;
-  desc: string;
-};
+import { User } from "constants/user";
+import { z } from "zod";
+
+export type TUsers = z.infer<typeof User> & { id?: string };

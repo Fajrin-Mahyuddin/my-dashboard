@@ -1,7 +1,7 @@
 import React from "react";
 import { Select } from "@headlessui/react";
 import { ISelectWithLabel } from "types/inputs";
-import { Field, FieldProps, useField } from "formik";
+import { ErrorMessage, Field, FieldProps, useField } from "formik";
 
 const SelectWithLabel = ({
   id,
@@ -15,12 +15,13 @@ const SelectWithLabel = ({
   const [field, meta, helper] = useField(name);
   return (
     <div className={`flex flex-${orient} gap-2`}>
-      <label htmlFor={id}>{children}</label>
+      <label className="text-[15px]" htmlFor={id}>
+        {children}
+      </label>
       <Select
         {...field}
-        required
         id={id}
-        className="p-2 rounded-md outline-none border-[2px] focus:border-[2px] border-box focus:border-[#E6AB35]"
+        className={`${meta.error && meta.touched ? "error" : ""} min-w-[250px] p-[0.60rem] rounded-md outline-none border-[2px] focus:border-[2px] border-box focus:border-[#E6AB35] hs-error:border-[red]`}
       >
         <option value="">{placeholder}</option>
         {options.map((item, i) => {
@@ -31,6 +32,9 @@ const SelectWithLabel = ({
           );
         })}
       </Select>
+      <div className="text-[12px] text-[red]">
+        <ErrorMessage name={name} />
+      </div>
     </div>
   );
 };
