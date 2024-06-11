@@ -20,7 +20,7 @@ const ReduxPage = () => {
       <div className="h-full">
         <h2>REDUX</h2>
         <br />
-        <Formik initialValues={{}} onSubmit={() => { }}>
+        <Formik initialValues={{}} onSubmit={() => {}}>
           <Form>
             <div className="grid gap-4 grid-cols-2 mb-6">
               <div className="flex gap-2 flex-col border p-2 rounded-md">
