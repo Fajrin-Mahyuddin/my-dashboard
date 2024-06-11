@@ -1,5 +1,4 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
 
 interface IZustandTextNumber {
   text: string;
@@ -7,8 +6,6 @@ interface IZustandTextNumber {
   zustandUpdateText: (e: string) => void;
   zustandUpdateNumber: (e: number) => void;
 }
-
-// const myMiddlewares = (e) => devtools(persist(e, { name: "updateTextNumber" }))
 
 export const useTextNumber = create<IZustandTextNumber>((set) => ({
   text: "",
