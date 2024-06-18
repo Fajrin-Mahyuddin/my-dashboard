@@ -9,3 +9,11 @@ export const validationForm = <T>(values: T, Field: AnyZodObject) => {
     }
   }
 };
+
+export function sumValue(a: number, b: number): number {
+  return a + b;
+}
+
+export function returnArr(a: number): number {
+  return a * 1;
+}

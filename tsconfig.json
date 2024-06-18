@@ -19,11 +19,12 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "components": ["components/*"],
-      "assets": ["assets/*"],
-      "states": ["states/*"],
-      "types": ["types/*"],
-      "hooks": ["hooks"]
+      "components/*": ["components/*"],
+      "assets/*": ["assets/*"],
+      "states/*": ["states/*"],
+      "types/*": ["types/*"],
+      "hooks/*": ["hooks/*"],
+      "utils/*": ["utils/*"]
     }
   },
   "include": [
