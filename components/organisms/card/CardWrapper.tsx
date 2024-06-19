@@ -6,11 +6,11 @@ import {
   ShoppingCartIcon,
 } from "@heroicons/react/24/outline";
 import SkeletonCard from "components/organisms/skeleton/Card";
-import { useFcm } from "hooks/useFcm";
+// import { useFcm } from "hooks/useFcm";
 
 const CardWrapper = () => {
   const [isLoading, setLoading] = useState(true);
-  const fcm = useFcm();
+  // const fcm = useFcm();
 
   useEffect(() => {
     setTimeout(() => {

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import Image from "next/image";
 // import bg from 'assets/images/bg.jpg';
 import Breadcrumb from "components/atoms/breadcrumbs";
@@ -8,6 +8,8 @@ import Sidebar from "components/organisms/sidebar";
 import Footers from "components/atoms/footers";
 import useBreadcrumb from "hooks/useBreadcrumb";
 import PrelineScript from "components/templates/PrelineScript";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { app } from "connections/firebase";
 
 interface IBaseLayout {
   children: JSX.Element;
@@ -15,6 +17,36 @@ interface IBaseLayout {
 
 const BaseLayout = ({ children }: IBaseLayout) => {
   let breadcrumbsValue = useBreadcrumb();
+  const requestNotificationPermission = useCallback(() => {
+    let messaging = getMessaging(app);
+    console.log("Requesting permission...");
+    Notification.requestPermission()
+      .then((permission) => {
+        if (permission === "granted") {
+          console.log("Notification permission granted.", permission);
+          getToken(messaging, { vapidKey: process.env.NEXT_PUBLIC_FCM_KEY })
+            .then((curr) => {
+              if (curr) {
+                console.log("current token", curr);
+              } else {
+                console.log("no token availabel");
+              }
+            })
+            .catch((error) => console.log("error get token", error));
+        }
+      })
+      .catch((error) => {
+        console.log("error request permission", error);
+      });
+
+    onMessage(messaging, (payload) => {
+      console.log("onMessage", payload);
+    });
+  }, []);
+
+  useEffect(() => {
+    requestNotificationPermission();
+  }, [requestNotificationPermission]);
 
   return (
     <main className="flex flex-row min-h-screen bg-[#f8f7f1]">
