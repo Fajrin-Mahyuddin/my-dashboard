@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -7,14 +7,56 @@ import {
   getDocs,
   deleteDoc,
   onSnapshot,
+  FirestoreError,
 } from "firebase/firestore";
 import { db } from "connections/firebase";
 import { TUsers } from "types/users";
 import { useToast } from "states/zustand/useToast";
 
 export const useFirebase = () => {
-  const [isLoading, setLoading] = useState(false);
+  const [isLoading, setLoading] = useState(true);
   const [lists, setLists] = useState<TUsers[]>([]);
+  const [errors, setErrors] = useState<FirestoreError | Error | unknown>();
+  const { setShow } = useToast();
+
+  const get = useCallback(async () => {
+    onSnapshot(
+      collection(db, "userss"),
+      (snapshot) => {
+        const result = snapshot.docs.map((item) => ({
+          id: item.id,
+          ...item.data(),
+        }));
+        setLists(result as TUsers[]);
+        setLoading(false);
+      },
+      (error) => {
+        console.log("error", error);
+        setErrors(error);
+        setShow({
+          msg: "Fetch error!",
+          show: true,
+          status: "error",
+        });
+        setLoading(false);
+      },
+    );
+  }, [setShow]);
+
+  useEffect(() => {
+    get();
+  }, [get]);
+
+  return {
+    isLoading,
+    lists,
+    errors,
+  };
+};
+
+export const useFirebaseAction = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<FirestoreError | Error | unknown>();
   const { setShow } = useToast();
 
   const add = async (user: TUsers) => {
@@ -27,7 +69,8 @@ export const useFirebase = () => {
         status: "success",
       });
     } catch (error) {
-      console.log("something wrong!", error);
+      setErrors(error);
+      console.log("firebase add error", error);
       setShow({
         msg: `Something wrong! ${error}`,
         show: true,
@@ -38,30 +81,7 @@ export const useFirebase = () => {
     }
   };
 
-  const get = useCallback(async () => {
-    setLoading(true);
-    onSnapshot(
-      collection(db, "users"),
-      (snapshot) => {
-        const result = snapshot.docs.map((item) => ({
-          id: item.id,
-          ...item.data(),
-        }));
-        setLists(result as TUsers[]);
-      },
-      (error) => {
-        console.log("error", error);
-        setShow({
-          msg: "Fetch error!",
-          show: true,
-          status: "error",
-        });
-      },
-    );
-    setLoading(false);
-  }, [setShow]);
-
-  const delItem = async (id: string, cb?: () => void) => {
+  const delItem = async (id: string) => {
     setLoading(true);
     try {
       await deleteDoc(doc(db, "users", id));
@@ -85,8 +105,7 @@ export const useFirebase = () => {
   return {
     isLoading,
     delItem,
-    lists,
+    errors,
     add,
-    get,
   };
 };

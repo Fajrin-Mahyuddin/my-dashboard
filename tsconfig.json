@@ -24,7 +24,8 @@
       "states/*": ["states/*"],
       "types/*": ["types/*"],
       "hooks/*": ["hooks/*"],
-      "utils/*": ["utils/*"]
+      "utils/*": ["utils/*"],
+      "connections/*": ["connections/*"]
     }
   },
   "include": [

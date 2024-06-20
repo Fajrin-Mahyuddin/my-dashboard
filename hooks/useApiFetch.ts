@@ -16,7 +16,7 @@ export const useApiFetch = () => {
   useEffect(() => {
     const get = async () => {
       try {
-        const req = await fetch("/api/lists/");
+        const req = await window.fetch("/api/lists/");
         const result = await req.json();
         setData(result.data);
       } catch (error) {

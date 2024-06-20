@@ -14,7 +14,6 @@ export default function Page({
 }) {
   useEffect(() => {
     if ("serviceWorker" in navigator) {
-      console.log("oke");
       navigator.serviceWorker.register("/firebase-messaging-sw.js").then(
         function (registration) {
           console.log(

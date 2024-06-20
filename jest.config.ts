@@ -20,6 +20,7 @@ module.exports = async () => {
     ...jestConfig.moduleNameMapper,
     "^components/(.*)$": "<rootDir>/components/$1",
     "^utils/*": "<rootDir>/utils/$1",
+    "^connections/*": "<rootDir>/connections/$1",
   };
   return { ...jestConfig, moduleNameMapper };
 };

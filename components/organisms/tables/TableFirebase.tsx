@@ -1,17 +1,14 @@
 import React, { Fragment, useEffect, useState } from "react";
 import SkeletonTable from "components/organisms/skeleton/Tabel";
-import { useFirebase } from "hooks/useFirebase";
+import { useFirebase, useFirebaseAction } from "hooks/useFirebase";
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { TUsers } from "types/users";
 import ModalContainer from "components/organisms/modal/Modal";
 
 const TableFirebase = () => {
-  const { lists, delItem, get, isLoading: isGetDataLoading } = useFirebase();
+  const { lists, isLoading: isGetDataLoading } = useFirebase();
+  const { delItem, isLoading: isDelLoading } = useFirebaseAction();
   const [user, setUser] = useState<TUsers | null>(null);
-
-  useEffect(() => {
-    get();
-  }, [get]);
 
   return (
     <Fragment>
@@ -27,7 +24,11 @@ const TableFirebase = () => {
         </thead>
         <tbody>
           {isGetDataLoading ? (
-            <SkeletonTable isLoading={isGetDataLoading} rows={5} cols={2} />
+            <SkeletonTable
+              isLoading={isGetDataLoading || isDelLoading}
+              rows={5}
+              cols={2}
+            />
           ) : (
             <Fragment>
               {lists &&

@@ -19,7 +19,6 @@ const BaseLayout = ({ children }: IBaseLayout) => {
   let breadcrumbsValue = useBreadcrumb();
   const requestNotificationPermission = useCallback(() => {
     let messaging = getMessaging(app);
-    console.log("Requesting permission...");
     Notification.requestPermission()
       .then((permission) => {
         if (permission === "granted") {
